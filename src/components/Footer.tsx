@@ -64,21 +64,21 @@ export default function Footer() {
             </div>
           </div>
 
-{/*           <div className="mt-12 pt-8 border-t border-zinc-800/50">
+          <div className="mt-12 pt-8 border-t border-zinc-800/50">
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
               <p className="text-zinc-400 text-sm">
                 &copy; {currentYear} Cubix Max. All rights reserved.
               </p>
-              <div className="flex space-x-6">
+{/*               <div className="flex space-x-6">
                 <a href="#" className="text-zinc-400 hover:text-purple-400 text-sm transition-colors">
                   Privacy Policy
                 </a>
                 <a href="#" className="text-zinc-400 hover:text-purple-400 text-sm transition-colors">
                   Terms of Service
                 </a>
-              </div>
+              </div> */}
             </div>
-          </div> */}
+          </div>
         </div>
       </div>
     </footer>
