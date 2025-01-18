@@ -65,8 +65,8 @@ export default function Footer() {
           </div>
 
           <div className="mt-12 pt-8 border-t border-zinc-800/50">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-              <p className="text-zinc-400 text-sm">
+            <div className="flex flex-col md:flex-row items-center justify-center gap-4">\
+              <p className="text-zinc-400 text-sm text-center">
                 &copy; {currentYear} Cubix Max. All rights reserved.
               </p>
 {/*               <div className="flex space-x-6">
