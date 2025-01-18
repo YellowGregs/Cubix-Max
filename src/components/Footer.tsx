@@ -20,7 +20,7 @@ export default function Footer() {
             </div>
 
             {/* Quick Links */}
-            <div className="space-y-4">
+{/*             <div className="space-y-4">
               <h3 className="text-lg font-semibold text-white">Quick Links</h3>
               <ul className="space-y-3">
                 <li>
@@ -33,7 +33,7 @@ export default function Footer() {
                   <a href="#support" className="text-zinc-400 hover:text-purple-400 transition-colors">Support</a>
                 </li>
               </ul>
-            </div>
+            </div> */}
 
             {/* Social Links */}
             <div className="space-y-4">
@@ -64,7 +64,7 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="mt-12 pt-8 border-t border-zinc-800/50">
+{/*           <div className="mt-12 pt-8 border-t border-zinc-800/50">
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
               <p className="text-zinc-400 text-sm">
                 &copy; {currentYear} Cubix Max. All rights reserved.
@@ -78,7 +78,7 @@ export default function Footer() {
                 </a>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </footer>
