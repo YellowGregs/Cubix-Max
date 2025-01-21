@@ -3,6 +3,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import Download from './pages/Download';
+import KeySystem from './pages/KeySystem';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/download" element={<Download />} />
+          <Route path="/key" element={<KeySystem />} /> {/* isWIP={false} */}
         </Routes>
         <Footer />
       </div>
