@@ -15,16 +15,6 @@ export default function Footer() {
 
             <div className="flex space-x-4">
               <a
-                href="https://www.tiktok.com/@tmrxtiktok"
-                title="TikTok"
-                className="group flex items-center justify-center w-10 h-10 rounded-lg bg-zinc-800/80 
-                hover:bg-purple-500/20 border border-zinc-700 hover:border-purple-500/50 transition-all duration-200"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-zinc-400 group-hover:text-purple-400 transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10-4.48-10-10-10zm1 14.5v-5.3h2.7l.4-2.8h-3.1V7.4c0-.8.3-1.4 1.4-1.4h2.1V3h-2.8c-3.4 0-4.3 2.6-4.3 4.6v2.6H7v2.8h3.2v5.5h2.8z"></path>
-                </svg>
-              </a>
-              <a
                 href="https://discord.gg/Fwq4EAKsa8"
                 title="Discord"
                 className="group flex items-center justify-center w-10 h-10 rounded-lg bg-zinc-800/80 
