@@ -2,11 +2,12 @@ import { useState, useEffect } from 'react';
 import { Monitor, Smartphone, Apple, AlertCircle, Clock, Download } from 'lucide-react';
 
 export default function DownloadPage() {
-  const [downloads, setDownloads] = useState<any[]>([]); // We'll just dynamically load this from JSON
+  const [downloads, setDownloads] = useState<any[]>([]);
   const [selectedVariant, setSelectedVariant] = useState('64-bit');
+  const [downloadUrl, setDownloadUrl] = useState('');
 
   useEffect(() => {
-    async function JsonData() {
+    async function fetchDownloadData() {
       try {
         const response = await fetch('https://raw.githubusercontent.com/YellowGregs/Test/refs/heads/main/Cubix.json');
         const data = await response.json();
@@ -17,7 +18,7 @@ export default function DownloadPage() {
             icon: Monitor,
             version: data.versionName,
             description: data.WindowsLink ? "Available" : "Not in development",
-            status: data.WindowsLink ? "Available" : "Not in development",
+            status: data.WindowsLink ? "Available" : "NIP",
             statusIcon: data.WindowsLink ? null : AlertCircle,
             statusColor: data.WindowsLink ? 'bg-green-500/20 text-green-400 border-green-500/50' : 'bg-red-500/20 text-red-400 border-red-500/50',
             screenshot: 'black'
@@ -30,7 +31,8 @@ export default function DownloadPage() {
             status: data.ApkLink['64'] ? 'Available' : 'Not Available',
             statusColor: data.ApkLink['64'] ? 'bg-green-500/20 text-green-400 border-green-500/50' : 'bg-red-500/20 text-red-400 border-red-500/50',
             variants: ['64-bit', '32-bit'],
-            screenshot: 'https://files.catbox.moe/46jwm5.png'
+            screenshot: 'https://files.catbox.moe/46jwm5.png',
+            apkLinks: data.ApkLink
           },
           {
             platform: 'iOS',
@@ -50,8 +52,24 @@ export default function DownloadPage() {
       }
     }
 
-    JsonData();
+    fetchDownloadData();
   }, []);
+
+  const handleDownloadClick = () => {
+    if (downloadUrl) {
+      window.location.href = downloadUrl;
+    }
+  };
+
+  const handleVariantChange = (variant: string) => {
+    setSelectedVariant(variant);
+
+    if (variant === '64-bit') {
+      setDownloadUrl(downloads[1].apkLinks['64']);
+    } else if (variant === '32-bit') {
+      setDownloadUrl(downloads[1].apkLinks['32']);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-black text-white pt-20 sm:pt-24">
@@ -62,7 +80,7 @@ export default function DownloadPage() {
         <p className="text-zinc-400 text-center mb-12 sm:mb-16 max-w-2xl mx-auto animate-fade-in delay-100 text-sm sm:text-base">
           Choose your platform and get started with Cubix Max today.
         </p>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {downloads.map((download, index) => (
             <div
@@ -102,7 +120,7 @@ export default function DownloadPage() {
                   <div className="relative">
                     <select
                       value={selectedVariant}
-                      onChange={(e) => setSelectedVariant(e.target.value)}
+                      onChange={(e) => handleVariantChange(e.target.value)}
                       className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base text-white appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all hover:bg-zinc-700"
                     >
                       {download.variants && download.variants.map((variant) => (
@@ -115,7 +133,10 @@ export default function DownloadPage() {
                       </svg>
                     </div>
                   </div>
-                  <button className="w-full bg-transparent hover:bg-purple-500/10 text-purple-400 font-bold py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg transition-all duration-200 flex items-center justify-center space-x-2 border border-purple-500 text-sm sm:text-base">
+                  <button
+                    className="w-full bg-transparent hover:bg-purple-500/10 text-purple-400 font-bold py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg transition-all duration-200 flex items-center justify-center space-x-2 border border-purple-500 text-sm sm:text-base"
+                    onClick={handleDownloadClick}
+                  >
                     <Download className="w-4 h-4 sm:w-5 sm:h-5" />
                     <span>Download</span>
                   </button>
