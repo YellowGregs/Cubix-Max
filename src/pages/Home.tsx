@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Shield, Zap, Cloud, Key, Cpu, Smartphone, ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
