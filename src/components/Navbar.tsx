@@ -96,7 +96,7 @@ export default function Navbar() {
           <div className={`md:hidden transition-all duration-300 ease-in-out ${
             isMenuOpen ? 'max-h-64 opacity-100 mt-4' : 'max-h-0 opacity-0 pointer-events-none'
           }`}>
-            <div className="py-2 space-y-1 border-t border-zinc-800/50">
+            <div className="py-2 space-y-2 border-t border-zinc-800/50">
               <Link
                 to="/"
                 className={`flex items-center space-x-2 px-4 py-3 rounded-lg transition-all duration-200 ${
