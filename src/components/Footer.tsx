@@ -1,4 +1,4 @@
-import { FaGithub, FaDiscord, FaYoutube } from 'react-icons/fa';
+import { FaTikTok, FaDiscord, FaYoutube } from 'react-icons/fa';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -15,15 +15,15 @@ export default function Footer() {
 
             <div className="flex space-x-4">
               <a
-                href="#"
-                title="GitHub"
+                href="https://www.tiktok.com/@tmrxtiktok"
+                title="TikTok"
                 className="group flex items-center justify-center w-10 h-10 rounded-lg bg-zinc-800/80 
                 hover:bg-purple-500/20 border border-zinc-700 hover:border-purple-500/50 transition-all duration-200"
               >
-                <FaGithub className="w-5 h-5 text-zinc-400 group-hover:text-purple-400 transition-colors" />
+                <FaTikTok className="w-5 h-5 text-zinc-400 group-hover:text-purple-400 transition-colors" />
               </a>
               <a
-                href="#"
+                href="https://discord.gg/Fwq4EAKsa8"
                 title="Discord"
                 className="group flex items-center justify-center w-10 h-10 rounded-lg bg-zinc-800/80 
                 hover:bg-[#7289da]/20 border border-zinc-700 hover:border-[#7289da]/50 transition-all duration-200"
@@ -31,7 +31,7 @@ export default function Footer() {
                 <FaDiscord className="w-5 h-5 text-zinc-400 group-hover:text-[#7289da] transition-colors" />
               </a>
               <a
-                href="#"
+                href="https://www.youtube.com/@CubixTeam"
                 title="YouTube"
                 className="group flex items-center justify-center w-10 h-10 rounded-lg bg-zinc-800/80 
                 hover:bg-red-500/20 border border-zinc-700 hover:border-red-500/50 transition-all duration-200"
