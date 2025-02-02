@@ -128,11 +128,11 @@ export default function Home() {
               className="w-24 h-24 sm:w-32 sm:h-32 animate-pulse"
             />
           </div>
-          {version && (
-    //   <p className="text-sm sm:text-base text-zinc-300 mb-6 sm:mb-8 animate-fade-in delay-100">
-    //     Version {version}
-    //   </p>
-    // )}
+{/*           {version && (
+      <p className="text-sm sm:text-base text-zinc-300 mb-6 sm:mb-8 animate-fade-in delay-100">
+        Version {version}
+      </p>
+    )} */}
           <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-6 animate-fade-in">
             Cubix <span className="text-purple-400">Max</span>
           </h1>
