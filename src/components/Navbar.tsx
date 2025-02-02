@@ -134,7 +134,7 @@ export default function Navbar() {
                 <span>Key System</span>
               </Link>
               <a
-                href="#"
+                href="https://discord.gg/Fwq4EAKsa8"
                 className="flex items-center space-x-2 px-4 py-3 rounded-lg bg-[#7289da]/20 hover:bg-[#7289da]/30 
                 text-[#7289da] border border-[#7289da]/50 transition-all duration-200"
                 onClick={() => setIsMenuOpen(false)}
