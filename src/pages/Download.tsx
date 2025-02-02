@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Monitor, Smartphone, Apple, AlertCircle, Download } from 'lucide-react';
+import { Monitor, Smartphone, Apple, AlertCircle, Clock, Download } from 'lucide-react';
 
 export default function DownloadPage() {
   const [downloads, setDownloads] = useState<any[]>([]);
@@ -27,12 +27,13 @@ export default function DownloadPage() {
           {
             platform: 'Android',
             icon: Smartphone,
-            version: "v1.4",
-            description: 'Android Version',
-            status: 'Available',
-            statusColor: 'bg-green-500/20 text-green-400 border-green-500/50',
+            version: data.versionName,
+            description: 'Android is Available to use.',
+            status: data.ApkLink['64'] ? 'Available' : 'Not Available',
+            statusColor: data.ApkLink['64'] ? 'bg-green-500/20 text-green-400 border-green-500/50' : 'bg-red-500/20 text-red-400 border-red-500/50',
             variants: ['64-bit', '32-bit'],
             screenshot: 'https://files.catbox.moe/46jwm5.png',
+            // apkLinks: data.ApkLink
             tempDownloadUrl: 'https://www.mediafire.com/file/oiyas8q83d21iiz/Cubix_.apk/file'
           },
           {
@@ -41,7 +42,7 @@ export default function DownloadPage() {
             version: data.versionName,
             description: 'iOS Version in W.I.P.',
             status: 'W.I.P',
-            statusIcon: AlertCircle,
+            statusIcon: Clock,
             statusColor: 'bg-yellow-500/20 text-yellow-400 border-yellow-500/50',
             screenshot: 'black'
           }
@@ -56,14 +57,25 @@ export default function DownloadPage() {
     fetchDownloadData();
   }, []);
 
+  const handleDownloadClick = () => {
+    if (downloadUrl) {
+      window.location.href = downloadUrl;
+    }
+  };
+
   const VariantChange = (variant: string) => {
     setSelectedVariant(variant);
+
     if (variant === '64-bit') {
-      setDownloadUrl(downloads[1].tempDownloadUrl);
+      setDownloadUrl(downloads[1].apkLinks['64']);
       setIsDownloadAvailable(true);
     } else if (variant === '32-bit') {
-      setDownloadUrl('');
-      setIsDownloadAvailable(false);
+      setDownloadUrl(downloads[1].apkLinks['32']);
+      if (!downloads[1].apkLinks['32']) {
+        setIsDownloadAvailable(false);
+      } else {
+        setIsDownloadAvailable(true);
+      }
     }
   };
 
@@ -82,28 +94,25 @@ export default function DownloadPage() {
           Choose your platform and get started with Cubix Max today.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {downloads.map((download, index) => (
             <div
               key={index}
-              className="bg-zinc-900/50 backdrop-blur-lg rounded-xl border border-zinc-800/50 overflow-hidden hover:border-purple-500/50 transition-all duration-300 flex flex-col shadow-lg hover:shadow-purple-500/10"
+              className="relative bg-zinc-900/50 backdrop-blur-lg rounded-xl border border-zinc-800 overflow-hidden flex flex-col min-h-[480px] sm:min-h-[520px] animate-fade-in"
             >
               <div className="relative h-40 sm:h-48 overflow-hidden bg-black">
                 {download.screenshot !== 'black' ? (
-                  <div className="relative w-full h-full group">
-                    <img
-                      src={download.screenshot}
-                      alt={`${download.platform} UI`}
-                      className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-100 transition-opacity duration-300 group-hover:opacity-40" />
-                    <div className="absolute inset-0 shadow-[inset_0_-20px_60px_-20px_rgba(0,0,0,0.5)] pointer-events-none" />
-                  </div>
+                  <img
+                    src={download.screenshot}
+                    alt={`${download.platform} UI`}
+                    className="w-full h-full object-cover object-center"
+                  />
                 ) : (
                   <div className="absolute inset-0 flex items-center justify-center">
                     <download.icon className="w-12 h-12 sm:w-16 sm:h-16 text-zinc-700" />
                   </div>
                 )}
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent z-10" />
                 <div className="absolute top-4 right-4 z-20">
                   <div className={`px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full text-xs sm:text-sm font-medium border flex items-center justify-center space-x-1.5 ${download.statusColor}`}>
                     {download.statusIcon && <download.statusIcon className="w-3 h-3 sm:w-4 sm:h-4" />}
@@ -138,6 +147,15 @@ export default function DownloadPage() {
                     </div>
                   </div>
 
+                  {/* <button
+                    className={`w-full ${!isDownloadAvailable ? 'bg-gray-500/30 opacity-50 cursor-not-allowed' : 'bg-transparent hover:bg-purple-500/10'} w-full bg-gradient-to-r from-purple-500/20 to-pink-500/20 hover:from-purple-500/30 hover:to-pink-500/30 text-purple-400 font-bold py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg transition-all duration-300 flex items-center justify-center space-x-2 border border-purple-500/30 hover:border-purple-500/50`}
+                    onClick={handleDownloadClick}
+                    disabled={!isDownloadAvailable} 
+                  >
+                    <Download className="w-4 h-4 sm:w-5 sm:h-5" />
+                    <span>{isDownloadAvailable ? 'Download' : 'Not Available'}</span>
+                  </button> */}
+
                   <button
                     className="w-full bg-gradient-to-r from-purple-500/20 to-pink-500/20 hover:from-purple-500/30 hover:to-pink-500/30 text-purple-400 font-bold py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg transition-all duration-300 flex items-center justify-center space-x-2 border border-purple-500/30 hover:border-purple-500/50"
                     onClick={() => window.location.href = download.tempDownloadUrl}
@@ -145,6 +163,7 @@ export default function DownloadPage() {
                     <Download className="w-4 h-4 sm:w-5 sm:h-5" />
                     <span>Download {download.version}</span>
                   </button>
+
                 </div>
               )}
 
