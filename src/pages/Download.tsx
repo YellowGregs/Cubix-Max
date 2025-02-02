@@ -5,6 +5,7 @@ export default function DownloadPage() {
   const [downloads, setDownloads] = useState<any[]>([]);
   const [selectedVariant, setSelectedVariant] = useState('64-bit');
   const [downloadUrl, setDownloadUrl] = useState('');
+  const [isDownloadAvailable, setIsDownloadAvailable] = useState(true);
 
   useEffect(() => {
     async function fetchDownloadData() {
@@ -61,13 +62,20 @@ export default function DownloadPage() {
     }
   };
 
-  const handleVariantChange = (variant: string) => {
+  const VariantChange = (variant: string) => {
     setSelectedVariant(variant);
 
+    // Complex stuff here :p
     if (variant === '64-bit') {
       setDownloadUrl(downloads[1].apkLinks['64']);
+      setIsDownloadAvailable(true);
     } else if (variant === '32-bit') {
       setDownloadUrl(downloads[1].apkLinks['32']);
+      if (!downloads[1].apkLinks['32']) {
+        setIsDownloadAvailable(false);
+      } else {
+        setIsDownloadAvailable(true);
+      }
     }
   };
 
@@ -120,7 +128,7 @@ export default function DownloadPage() {
                   <div className="relative">
                     <select
                       value={selectedVariant}
-                      onChange={(e) => handleVariantChange(e.target.value)}
+                      onChange={(e) => VariantChange(e.target.value)}
                       className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base text-white appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all hover:bg-zinc-700"
                     >
                       {download.variants && download.variants.map((variant) => (
@@ -133,12 +141,14 @@ export default function DownloadPage() {
                       </svg>
                     </div>
                   </div>
+
                   <button
-                    className="w-full bg-transparent hover:bg-purple-500/10 text-purple-400 font-bold py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg transition-all duration-200 flex items-center justify-center space-x-2 border border-purple-500 text-sm sm:text-base"
+                    className={`w-full ${!isDownloadAvailable ? 'bg-gray-500/30 opacity-50 cursor-not-allowed' : 'bg-transparent hover:bg-purple-500/10'} text-purple-400 font-bold py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg transition-all duration-200 flex items-center justify-center space-x-2 border border-purple-500 text-sm sm:text-base`}
                     onClick={handleDownloadClick}
+                    disabled={!isDownloadAvailable} // Disable button if not available
                   >
                     <Download className="w-4 h-4 sm:w-5 sm:h-5" />
-                    <span>Download</span>
+                    <span>{isDownloadAvailable ? 'Download' : 'Not Available'}</span>
                   </button>
                 </div>
               )}
