@@ -254,16 +254,12 @@ export default function Scripts() {
                     >
                       <KeyIcon className="w-3.5 h-3.5" />
                       <span>Get Key</span>
-{/*                       <div className="flex items-center gap-1.5 text-[10px] text-amber-500/70 border-l border-amber-500/20 pl-2 ml-1">
-                        <Clock className="w-3 h-3" />
-                        <span>Required</span>
-                      </div> */}
                     </a>
                   </div>
                 )}
 
                 <div className="relative bg-black/50 rounded-lg p-4 group">
-                  <pre className="text-sm text-zinc-300 overflow-x-auto max-h-24 custom-scrollbar">
+                  <pre className="text-sm text-zinc-300 overflow-x-auto max-h-16 custom-scrollbar">
                     {script.script}
                   </pre>
                   <button
@@ -277,6 +273,18 @@ export default function Scripts() {
                     <Copy className="w-4 h-4" />
                   </button>
                 </div>
+                
+                <button
+                  onClick={() => copyScript(script.script, script._id)}
+                  className={`mt-3 w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg transition-all duration-200 md:hidden ${
+                    copiedId === script._id
+                      ? 'bg-green-500/20 text-green-400 border border-green-500/50'
+                      : 'bg-purple-500/20 text-purple-400 border border-purple-500/50 hover:bg-purple-500/30'
+                  }`}
+                >
+                  <Copy className="w-4 h-4" />
+                  <span>{copiedId === script._id ? 'Copied!' : 'Copy Script'}</span>
+                </button>
               </div>
             </div>
           ))}
