@@ -17,14 +17,17 @@ export default function Navbar() {
   }, []);
 
   const isActive = (path: string) => location.pathname === path;
+  const shouldHaveSolidBg = isMenuOpen && (location.pathname === '/download' || location.pathname === '/scripts');
 
   return (
     <div className="fixed top-0 left-0 right-0 z-50 px-4 py-4">
       <nav 
         className={`max-w-7xl mx-auto transition-all duration-500 rounded-2xl transform ${
-          isScrolled 
-            ? 'bg-black/60 backdrop-blur-lg border border-zinc-800/50 shadow-lg translate-y-0 scale-100' 
-            : 'bg-transparent -translate-y-1 scale-[1.01]'
+          shouldHaveSolidBg
+            ? 'bg-black border border-zinc-800 shadow-lg'
+            : isScrolled 
+              ? 'bg-black/60 backdrop-blur-lg border border-zinc-800/50 shadow-lg translate-y-0 scale-100' 
+              : 'bg-transparent -translate-y-1 scale-[1.01]'
         }`}
       >
         <div className="px-4 sm:px-6 lg:px-8">
