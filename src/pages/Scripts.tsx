@@ -141,7 +141,7 @@ export default function Scripts() {
                 className="px-6 bg-purple-500/20 hover:bg-purple-500/30 text-purple-400 transition-colors border-l border-zinc-700/50 flex items-center gap-2"
               >
                 <Search className="w-5 h-5" />
-                <span className="hidden sm:inline">Search</span>
+{/*                 <span className="hidden sm:inline">Search</span> */}
               </button>
             </div>
 
