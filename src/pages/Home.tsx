@@ -92,6 +92,22 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
 }
 
 export default function Home() {
+  const [version, setVersion] = useState<string>('');
+
+  useEffect(() => {
+    async function fetchVersion() {
+      try {
+        const response = await fetch('https://raw.githubusercontent.com/YellowGregs/Test/refs/heads/main/Cubix.json');
+        const data = await response.json();
+        setVersion(data.versionName);
+      } catch (error) {
+        console.error('Error fetching version data:', error);
+      }
+    }
+
+    fetchVersion();
+  }, []);
+  
   return (
     <div className="min-h-screen bg-black text-white">
       <div className="fixed inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIiB4PSIwIiB5PSIwIj48ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9Ii43NSIgc3RpdGNoVGlsZXM9InN0aXRjaCIgdHlwZT0iZnJhY3RhbE5vaXNlIi8+PGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNhKSIgb3BhY2l0eT0iLjA1Ii8+PC9zdmc+')] opacity-50" />
@@ -115,6 +131,11 @@ export default function Home() {
           <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-6 animate-fade-in">
             Cubix <span className="text-purple-400">Max</span>
           </h1>
+          {version && (
+            <p className="text-lg sm:text-xl md:text-2xl text-zinc-300 mb-6 sm:mb-8 animate-fade-in delay-100">
+              Version {version}
+            </p>
+          )}
           <p className="text-lg sm:text-xl md:text-2xl text-zinc-300 mb-6 sm:mb-8 max-w-2xl mx-auto animate-fade-in delay-100 px-4">
             A Roblox Executor to execute scripts.
           </p>
