@@ -1,42 +1,42 @@
 import { useState } from 'react';
-import { Shield, Zap, Cloud, Lock, Cpu, Smartphone, ChevronDown } from 'lucide-react';
+import { Shield, Zap, Cloud, Key, Cpu, Smartphone, ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const features = [
   {
     icon: Shield,
-    title: 'Title',
-    description: 'Description',
+    title: 'Secure & Safe',
+    description: 'Safe to use & little to none vulnerability.',
     gradient: 'from-blue-500 to-purple-500'
   },
   {
     icon: Zap,
-    title: 'Title',
-    description: 'Description',
+    title: 'Luarmor',
+    description: 'Enjoy luarmor scripts without any issues.',
     gradient: 'from-yellow-500 to-orange-500'
   },
   {
     icon: Cloud,
-    title: 'Title',
-    description: 'Description',
+    title: 'Script Hub',
+    description: 'Search scripts with ease.',
     gradient: 'from-green-500 to-emerald-500'
   },
   {
-    icon: Lock,
-    title: 'Title',
-    description: 'Description',
+    icon: Key,
+    title: 'Key System',
+    description: 'Has a easy Key System.',
     gradient: 'from-purple-500 to-pink-500'
   },
   {
     icon: Cpu,
-    title: 'Title',
-    description: 'Description',
+    title: 'Execution',
+    description: 'Fast Execution.',
     gradient: 'from-red-500 to-rose-500'
   },
   {
     icon: Smartphone,
-    title: 'Title',
-    description: 'Description',
+    title: 'Device',
+    description: 'Currently Supports Android.',
     gradient: 'from-indigo-500 to-violet-500'
   }
 ];
