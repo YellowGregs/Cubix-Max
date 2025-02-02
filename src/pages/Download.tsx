@@ -19,7 +19,7 @@ export default function DownloadPage() {
             icon: Monitor,
             version: data.versionName,
             description: data.WindowsLink ? "Available" : "Not in development",
-            status: data.WindowsLink ? "Available" : "NIP",
+            status: data.WindowsLink ? "Available" : "NID",
             statusIcon: data.WindowsLink ? null : AlertCircle,
             statusColor: data.WindowsLink ? 'bg-green-500/20 text-green-400 border-green-500/50' : 'bg-red-500/20 text-red-400 border-red-500/50',
             screenshot: 'black'
