@@ -40,7 +40,7 @@ export default function DownloadPage() {
             icon: Apple,
             version: data.versionName,
             description: 'iOS Version in W.I.P.',
-            status: 'W.I.P.',
+            status: 'W.I.P',
             statusIcon: Clock,
             statusColor: 'bg-yellow-500/20 text-yellow-400 border-yellow-500/50',
             screenshot: 'black'
