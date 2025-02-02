@@ -254,10 +254,10 @@ export default function Scripts() {
                     >
                       <KeyIcon className="w-3.5 h-3.5" />
                       <span>Get Key</span>
-                      <div className="flex items-center gap-1.5 text-[10px] text-amber-500/70 border-l border-amber-500/20 pl-2 ml-1">
+{/*                       <div className="flex items-center gap-1.5 text-[10px] text-amber-500/70 border-l border-amber-500/20 pl-2 ml-1">
                         <Clock className="w-3 h-3" />
                         <span>Required</span>
-                      </div>
+                      </div> */}
                     </a>
                   </div>
                 )}
