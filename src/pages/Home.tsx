@@ -133,7 +133,7 @@ export default function Home() {
           </h1>
           {version && (
       <p className="text-sm sm:text-base text-zinc-300 mb-6 sm:mb-8 animate-fade-in delay-100">
-        Version {version}
+        Version - {version}
       </p>
     )}
           <p className="text-lg sm:text-xl md:text-2xl text-zinc-300 mb-6 sm:mb-8 max-w-2xl mx-auto animate-fade-in delay-100 px-4">
