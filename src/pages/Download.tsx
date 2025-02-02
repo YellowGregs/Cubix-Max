@@ -1,41 +1,57 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Monitor, Smartphone, Apple, AlertCircle, Clock, Download } from 'lucide-react';
 
-const downloads = [
-  {
-    platform: 'Windows',
-    icon: Monitor,
-    version: '1.0.0',
-    description: 'The Description.',
-    status: 'W.I.P.',
-    statusIcon: Clock,
-    statusColor: 'bg-yellow-500/20 text-yellow-400 border-yellow-500/50',
-    screenshot: 'black'
-  },
-  {
-    platform: 'Android',
-    icon: Smartphone,
-    version: '1.0.0',
-    description: 'The Description.',
-    status: 'Available',
-    variants: ['64-bit', '32-bit'],
-    statusColor: 'bg-green-500/20 text-green-400 border-green-500/50',
-    screenshot: 'https://files.catbox.moe/46jwm5.png'
-  },
-  {
-    platform: 'iOS',
-    icon: Apple,
-    version: '1.0.0',
-    description: 'The Description.',
-    status: 'Discontinued',
-    statusIcon: AlertCircle,
-    statusColor: 'bg-red-500/20 text-red-400 border-red-500/50',
-    screenshot: 'black'
-  },
-];
-
 export default function DownloadPage() {
+  const [downloads, setDownloads] = useState<any[]>([]); // We'll just dynamically load this from JSON
   const [selectedVariant, setSelectedVariant] = useState('64-bit');
+
+  useEffect(() => {
+    async function JsonData() {
+      try {
+        const response = await fetch('https://raw.githubusercontent.com/YellowGregs/Test/refs/heads/main/Cubix.json');
+        const data = await response.json();
+
+        const mappedDownloads = [
+          {
+            platform: 'Windows',
+            icon: Monitor,
+            version: data.versionName,
+            description: data.WindowsLink ? "Available" : "Not in development",
+            status: data.WindowsLink ? "Available" : "NIP",
+            statusIcon: data.WindowsLink ? null : AlertCircle,
+            statusColor: data.WindowsLink ? 'bg-green-500/20 text-green-400 border-green-500/50' : 'bg-red-500/20 text-red-400 border-red-500/50',
+            screenshot: 'black'
+          },
+          {
+            platform: 'Android',
+            icon: Smartphone,
+            version: data.versionName,
+            description: 'Android is Available to use.',
+            status: data.ApkLink['64'] ? 'Available' : 'Not Available',
+            statusColor: data.ApkLink['64'] ? 'bg-green-500/20 text-green-400 border-green-500/50' : 'bg-red-500/20 text-red-400 border-red-500/50',
+            variants: ['64-bit', '32-bit'],
+            screenshot: 'https://files.catbox.moe/46jwm5.png'
+          },
+          {
+            platform: 'iOS',
+            icon: Apple,
+            version: data.versionName,
+            description: 'iOS Version in W.I.P.',
+            status: 'W.I.P.',
+            statusIcon: Clock,
+            statusColor: 'bg-yellow-500/20 text-yellow-400 border-yellow-500/50',
+            screenshot: 'black'
+          }
+        ];
+
+        setDownloads(mappedDownloads);
+      } catch (error) {
+        console.error('Error fetching download data:', error);
+      }
+    }
+
+    JsonData();
+  }, []);
 
   return (
     <div className="min-h-screen bg-black text-white pt-20 sm:pt-24">
