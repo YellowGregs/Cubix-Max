@@ -33,7 +33,7 @@ export default function DownloadPage() {
             statusColor: 'bg-green-500/20 text-green-400 border-green-500/50',
             variants: ['64-bit', '32-bit'],
             screenshot: 'https://files.catbox.moe/46jwm5.png',
-            tempDownloadUrl: 'https://example.com/cubix-max-v1.4.apk'
+            tempDownloadUrl: 'https://www.mediafire.com/file/oiyas8q83d21iiz/Cubix_.apk/file'
           },
           {
             platform: 'iOS',
