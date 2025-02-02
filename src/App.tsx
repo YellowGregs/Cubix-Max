@@ -4,6 +4,7 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import Download from './pages/Download';
 import KeySystem from './pages/KeySystem';
+import Scripts from './pages/Scripts';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/download" element={<Download />} />
           <Route path="/key" element={<KeySystem />} /> {/* isWIP={false} */}
+          <Route path="/scripts" element={<Scripts />} />
         </Routes>
         <Footer />
       </div>
@@ -21,4 +23,4 @@ function App() {
   );
 }
 
-export default App;
+export default App

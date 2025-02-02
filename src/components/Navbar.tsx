@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { FaDiscord } from 'react-icons/fa';
-import { Menu, X, Home, Download, Key } from 'lucide-react';
+import { Menu, X, Home, Download, Key, Search } from 'lucide-react';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -40,6 +40,7 @@ export default function Navbar() {
               </span>
             </Link>
 
+            {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-4">
               <Link
                 to="/"
@@ -64,6 +65,17 @@ export default function Navbar() {
                 <span>Download</span>
               </Link>
               <Link
+                to="/scripts"
+                className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-200 ${
+                  isActive('/scripts')
+                    ? 'text-purple-400 bg-purple-500/10'
+                    : 'text-zinc-400 hover:text-white hover:bg-zinc-800/50'
+                }`}
+              >
+                <Search className="w-4 h-4" />
+                <span>Scripts</span>
+              </Link>
+              <Link
                 to="/key"
                 className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-200 ${
                   isActive('/key')
@@ -84,6 +96,7 @@ export default function Navbar() {
               </a>
             </div>
 
+            {/* Mobile Menu Button */}
             <button
               className="md:hidden p-2 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800/50 transition-colors"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -93,10 +106,12 @@ export default function Navbar() {
           </div>
 
           {/* Mobile Menu */}
-          <div className={`md:hidden transition-all duration-300 ease-in-out ${
-            isMenuOpen ? 'max-h-64 opacity-100 mt-4' : 'max-h-0 opacity-0 pointer-events-none'
-          }`}>
-            <div className="py-2 space-y-2 border-t border-zinc-800/50">
+          <div 
+            className={`md:hidden transition-all duration-300 ease-in-out overflow-hidden ${
+              isMenuOpen ? 'max-h-[400px] opacity-100' : 'max-h-0 opacity-0'
+            }`}
+          >
+            <div className="py-3 space-y-2 border-t border-zinc-800/50">
               <Link
                 to="/"
                 className={`flex items-center space-x-2 px-4 py-3 rounded-lg transition-all duration-200 ${
@@ -122,6 +137,18 @@ export default function Navbar() {
                 <span>Download</span>
               </Link>
               <Link
+                to="/scripts"
+                className={`flex items-center space-x-2 px-4 py-3 rounded-lg transition-all duration-200 ${
+                  isActive('/scripts')
+                    ? 'text-purple-400 bg-purple-500/10'
+                    : 'text-zinc-400 hover:text-white hover:bg-zinc-800/50'
+                }`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <Search className="w-4 h-4" />
+                <span>Scripts</span>
+              </Link>
+              <Link
                 to="/key"
                 className={`flex items-center space-x-2 px-4 py-3 rounded-lg transition-all duration-200 ${
                   isActive('/key')
@@ -136,7 +163,7 @@ export default function Navbar() {
               <a
                 href="https://discord.gg/Fwq4EAKsa8"
                 className="flex items-center space-x-2 px-4 py-3 rounded-lg bg-[#7289da]/20 hover:bg-[#7289da]/30 
-                text-[#7289da] border border-[#7289da]/50 transition-all duration-200"
+                text-[#7289da] transition-all duration-200"
                 onClick={() => setIsMenuOpen(false)}
               >
                 <FaDiscord className="w-5 h-5" />
