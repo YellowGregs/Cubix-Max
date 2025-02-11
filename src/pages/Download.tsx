@@ -34,7 +34,6 @@ export default function DownloadPage() {
             variants: ['64-bit', '32-bit'],
             screenshot: 'https://files.catbox.moe/46jwm5.png',
             apkLinks: data.ApkLink
-            // tempDownloadUrl: 'https://www.mediafire.com/file/oiyas8q83d21iiz/Cubix_.apk/file'
           },
           {
             platform: 'iOS',
@@ -57,26 +56,26 @@ export default function DownloadPage() {
     fetchDownloadData();
   }, []);
 
+  // This effect updates the download URL whenever the downloads data or selected variant changes.
+  useEffect(() => {
+    if (downloads.length > 1 && downloads[1].apkLinks) {
+      // Map our UI variant ("64-bit" / "32-bit") to the JSON keys ("64" / "32")
+      const linkKey = selectedVariant === '64-bit' ? '64' : '32';
+      const link = downloads[1].apkLinks[linkKey];
+      setDownloadUrl(link);
+      setIsDownloadAvailable(!!link);
+    }
+  }, [downloads, selectedVariant]);
+
   const handleDownloadClick = () => {
     if (downloadUrl) {
       window.location.href = downloadUrl;
     }
   };
 
+  // Now, VariantChange only updates the selectedVariant.
   const VariantChange = (variant: string) => {
     setSelectedVariant(variant);
-
-    if (variant === '64-bit') {
-      setDownloadUrl(downloads[1].apkLinks['64']);
-      setIsDownloadAvailable(true);
-    } else if (variant === '32-bit') {
-      setDownloadUrl(downloads[1].apkLinks['32']);
-      if (!downloads[1].apkLinks['32']) {
-        setIsDownloadAvailable(false);
-      } else {
-        setIsDownloadAvailable(true);
-      }
-    }
   };
 
   return (
@@ -147,23 +146,14 @@ export default function DownloadPage() {
                     </div>
                   </div>
 
-                    <button
-                    className={`w-full ${!isDownloadAvailable ? 'bg-gray-500/30 opacity-50 cursor-not-allowed' : 'bg-transparent hover:bg-purple-500/10'} w-full bg-gradient-to-r from-purple-500/20 to-pink-500/20 hover:from-purple-500/30 hover:to-pink-500/30 text-purple-400 font-bold py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg transition-all duration-300 flex items-center justify-center space-x-2 border border-purple-500/30 hover:border-purple-500/50`}
+                  <button
+                    className={`w-full ${!isDownloadAvailable ? 'bg-gray-500/30 opacity-50 cursor-not-allowed' : 'bg-transparent hover:bg-purple-500/10'} bg-gradient-to-r from-purple-500/20 to-pink-500/20 hover:from-purple-500/30 hover:to-pink-500/30 text-purple-400 font-bold py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg transition-all duration-300 flex items-center justify-center space-x-2 border border-purple-500/30 hover:border-purple-500/50`}
                     onClick={handleDownloadClick}
                     disabled={!isDownloadAvailable} 
-                    >
-                    <Download className="w-4 h-4 sm:w-5 sm:h-5" />
-                    <span>{isDownloadAvailable ? `Download ${downloads[1].version}` : 'Not Available'}</span>
-                    </button>
-
-                  {/* <button
-                    className="w-full bg-gradient-to-r from-purple-500/20 to-pink-500/20 hover:from-purple-500/30 hover:to-pink-500/30 text-purple-400 font-bold py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg transition-all duration-300 flex items-center justify-center space-x-2 border border-purple-500/30 hover:border-purple-500/50"
-                    onClick={() => window.location.href = download.tempDownloadUrl}
                   >
                     <Download className="w-4 h-4 sm:w-5 sm:h-5" />
-                    <span>Download {download.version}</span>
-                  </button> */}
-
+                    <span>{isDownloadAvailable ? `Download ${downloads[1].version}` : 'Not Available'}</span>
+                  </button>
                 </div>
               )}
 
