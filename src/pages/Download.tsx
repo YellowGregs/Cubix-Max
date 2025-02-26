@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
-import { Monitor, Smartphone, Apple, AlertCircle, Clock, Download } from 'lucide-react';
+// removed:  Monitor, Smartphone, Apple,
+import { AlertCircle, Clock, Download } from 'lucide-react';
+import { FaApple, FaAndroid, FaDesktop } from 'react-icons/fa';
 
 export default function DownloadPage() {
   const [downloads, setDownloads] = useState<any[]>([]);
@@ -16,7 +18,7 @@ export default function DownloadPage() {
         const mappedDownloads = [
           {
             platform: 'Windows',
-            icon: Monitor,
+            icon: FaDesktop,
             version: data.versionName,
             description: data.WindowsLink ? "Available" : "Not in development",
             status: data.WindowsLink ? "Available" : "NID",
@@ -26,7 +28,7 @@ export default function DownloadPage() {
           },
           {
             platform: 'Android',
-            icon: Smartphone,
+            icon: FaAndroid,
             version: data.versionName,
             description: 'Android is Available to use.',
             status: data.ApkLink['64'] ? 'Available' : 'Not Available',
@@ -37,7 +39,7 @@ export default function DownloadPage() {
           },
           {
             platform: 'iOS',
-            icon: Apple,
+            icon: FaApple,
             version: data.versionName,
             description: 'iOS Version in W.I.P.',
             status: 'W.I.P',
