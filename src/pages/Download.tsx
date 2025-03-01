@@ -20,10 +20,13 @@ export default function DownloadPage() {
             platform: 'Windows',
             icon: FaDesktop,
             version: data.versionName,
-            description: data.WindowsLink ? "Available" : "Not in development",
-            status: data.WindowsLink ? "Available" : "NID",
-            statusIcon: data.WindowsLink ? null : AlertCircle,
-            statusColor: data.WindowsLink ? 'bg-green-500/20 text-green-400 border-green-500/50' : 'bg-red-500/20 text-red-400 border-red-500/50',
+            // description: data.WindowsLink ? "Available" : "Not in development",
+            description: 'Window Executor is in W.I.P.',
+            status: data.WindowsLink ? "Available" : "W.I.P.",
+            // statusIcon: data.WindowsLink ? null : AlertCircle,
+            statusIcon: Clock,
+            // statusColor: data.WindowsLink ? 'bg-green-500/20 text-green-400 border-green-500/50' : 'bg-red-500/20 text-red-400 border-red-500/50',
+            statusColor: 'bg-yellow-500/20 text-yellow-400 border-yellow-500/50',
             screenshot: 'black'
           },
           {
@@ -41,10 +44,11 @@ export default function DownloadPage() {
             platform: 'iOS',
             icon: FaApple,
             version: data.versionName,
-            description: 'iOS Version in W.I.P.',
-            status: 'W.I.P',
-            statusIcon: Clock,
-            statusColor: 'bg-yellow-500/20 text-yellow-400 border-yellow-500/50',
+            description: 'iOS Version Not In Development.',
+            status: 'NID',
+            // statusIcon: Clock,
+            // statusColor: 'bg-yellow-500/20 text-yellow-400 border-yellow-500/50',
+            statusColor: 'bg-red-500/20 text-red-400 border-red-500/50',
             screenshot: 'black'
           }
         ];
