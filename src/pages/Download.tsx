@@ -62,10 +62,9 @@ export default function DownloadPage() {
     fetchDownloadData();
   }, []);
 
-  // This effect updates the download URL whenever the downloads data or selected variant changes.
   useEffect(() => {
     if (downloads.length > 1 && downloads[1].apkLinks) {
-      // Map our UI variant ("64-bit" / "32-bit") to the JSON keys ("64" / "32")
+      // ("64-bit" / "32-bit") to the JSON keys ("64" / "32")
       const linkKey = selectedVariant === '64-bit' ? '64' : '32';
       const link = downloads[1].apkLinks[linkKey];
       setDownloadUrl(link);
@@ -79,7 +78,6 @@ export default function DownloadPage() {
     }
   };
 
-  // Now, VariantChange only updates the selectedVariant.
   const VariantChange = (variant: string) => {
     setSelectedVariant(variant);
   };
