@@ -1,7 +1,7 @@
 # Cubix-Max
 
-- `YellowGreg` - Domain Hoster, Web Developer, & Designer
-- `Wspboy12` - Web Developer & Designer
+- `YellowGreg` - Web Developer, & Designer
+- `Wspboy12` - Bought & Hosted the website. Web Developer & Designer
 - `StevenK-293` - Contributor & Help Develop the Scripts Page
 
 
